@@ -7,14 +7,16 @@ import com.picsauditing.employeeguard.lms.model.api.MessageResponse;
 import com.picsauditing.employeeguard.lms.model.api.Payload;
 import com.picsauditing.employeeguard.lms.service.ApiService;
 import com.picsauditing.employeeguard.lms.service.LmsService;
+import com.picsauditing.employeeguard.lms.temp.Greeting;
+import com.picsauditing.employeeguard.lms.temp.HelloMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import static com.picsauditing.employeeguard.lms.model.api.Command.*;
 
 @RestController
 class LmsController {
@@ -58,7 +60,6 @@ class LmsController {
 
 		return new ResponseEntity<>(messageResponse, HttpStatus.OK);
 	}
-
 
 	private void print(Message msg) {
 		System.out.println("msg.id: " + msg.getId());

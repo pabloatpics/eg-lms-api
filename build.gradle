@@ -7,6 +7,7 @@ buildscript {
     }
     dependencies {
         //Required dependency for spring-boot plugin
+//      classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.0.BUILD-SNAPSHOT")
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.1.2.BUILD-SNAPSHOT'
     }
 }
@@ -47,14 +48,9 @@ idea {
     }
 }
 
-configurations {
-    jaxb
-}
-
 war {
     baseName = 'eg-lms-api'
     version  = '0.1.0'
-    from genJaxb.classesDir
 }
 
 repositories {
@@ -95,7 +91,10 @@ exclude(module: 'commons-logging')
        Please review and delete this closure when resolved. */
     }
 
-    compile("wsdl4j:wsdl4j:1.6.1")
-    jaxb("com.sun.xml.bind:jaxb-xjc:2.2.4-1")
-    compile(files(genJaxb.classesDir).builtBy(genJaxb))
+    compile("org.springframework.boot:spring-boot-starter-websocket")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework:spring-messaging")
+    compile("com.google.guava:guava:10.0.1")
+    compile 'com.google.guava:guava:[14,)'
+    testCompile("junit:junit")
 }
